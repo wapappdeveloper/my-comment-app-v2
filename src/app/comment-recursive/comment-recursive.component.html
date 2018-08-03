@@ -1,0 +1,34 @@
+<div class="list-group-item" *ngFor="let chat of chatArray">
+  <span class="comment-time" >{{chat.time}}</span>
+  <span class="reply-comment" (click)="replyToComment(chat, chatArray)" >reply</span>
+  <span class="edit-comment" (click)="editComment(chat, chatArray)" >edit</span>
+  <span class="close-comment" (click)="removeComment(chat, chatArray)" >x</span>
+  <span class="name label">{{chat.name}}</span>
+  <div class="alert alert-info message active">{{chat.message}}</div>
+  <div *ngIf="chat.reply && chat.reply.length>0">
+    <app-comment-recursive [chat]="chat.reply" (emitter)="emitterChild($event)"></app-comment-recursive>
+      <!--<div class="list-group-item" *ngFor="let reply of chat.reply">
+          <span class="comment-time" >{{chat.time}}</span>
+          <span class="name label">{{reply.name}}</span>
+          <div class="alert alert-info message">{{reply.message}}</div>
+      </div>-->
+      <!--<div class="list-group-item" *ngFor="let reply of chat.reply">
+        <span class="comment-time" >{{reply.time}}</span>
+        <span class="reply-comment" (click)="replyToComment(reply, chat.reply)">reply</span>
+        <span class="edit-comment" (click)="editComment(reply, chat.reply)">edit</span>
+        <span class="close-comment" (click)="removeComment(reply, chat.reply)">x</span>
+        <span class="name label">{{reply.name}}</span>
+        <div class="alert alert-info message">{{reply.message}}</div>
+        <div *ngIf="reply.reply && reply.reply.length>0">
+            <div class="list-group-item" *ngFor="let reply1 of reply.reply">
+              <span class="comment-time" >{{reply1.time}}</span>
+              <span class="reply-comment" (click)="replyToComment(reply1, reply.reply)">reply</span>
+              <span class="edit-comment" (click)="editComment(reply1, reply.reply)">edit</span>
+              <span class="close-comment" (click)="removeComment(reply1, reply.reply)">x</span>
+              <span class="name label">{{reply1.name}}</span>
+              <div class="alert alert-info message">{{reply1.message}}</div>
+            </div>
+        </div>
+      </div>-->
+  </div>
+</div>
